@@ -210,6 +210,9 @@ namespace MakeDir
                 // Reader を生成
                 using (var reader = new StreamReader(file))
                 {
+                    // 作成ディレクトリをクリア
+                    textBoxSubDirs.Text = string.Empty;
+
                     // 繰り返し
                     while (true)
                     {
