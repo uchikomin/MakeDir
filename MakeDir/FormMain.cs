@@ -255,11 +255,24 @@ namespace MakeDir
             // 作成ディレクトリに対して繰り返し
             foreach (var subDir in subDirs)
             {
-                // トリム
-                subDir.Trim();
+                // トリム(前後の空白を取り除く)
+                var subDirPath = subDir.Trim();
+
+                // 空文字列の場合
+                if (subDirPath.Length == 0)
+                {
+                    // スキップ
+                    continue;
+                }
+                // # から始まる場合
+                if (subDirPath.StartsWith("#"))
+                {
+                    // スキップ
+                    continue;
+                }
 
                 // 作成ディレクトリのフルパスを取得
-                var dirPath = workDir + Path.DirectorySeparatorChar + subDir;
+                var dirPath = Path.Combine(workDir, subDirPath);
 
                 // ディレクトリが存在する場合
                 if (Directory.Exists(dirPath))
